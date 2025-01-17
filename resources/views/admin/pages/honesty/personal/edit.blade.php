@@ -1,11 +1,5 @@
 @extends('admin.master')
 @section('AdminContent')
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div class="admin_create">
     <div class="admin_create_container">
         <div class="admin_create_content">
@@ -13,45 +7,53 @@
                 <div class="admin_create_title">
                     <div class="notify_title_cn">
                         <div class="notify_title">
-                            <h2>تعديل دين خارجي</h2>
-                            <p>قم بتعديل معلومات الدين الخارجي هنا</p>
+                            <h2>تعديل امانة شخصية </h2>
+                            <p>قم بتعديل الامانات الالشخصية هنا</p>
                         </div>
                         <div class="notify_btn">
                             <button><a href="{{ route('home.page') }}">الرجوع إلى الصفحة الأخيرة</a></button>
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('internal.update', ['InternalId' => $debt->id]) }}" method="post">
+                <form action="{{ route('personal.update',['PersonalHonestyId' => $personalHonesty->id]) }}" method="POST">
                     @csrf
-                    @method('PUT') <!-- إضافة هذه السطر لتحديد الطريقة PUT -->
+                    @method('put')
                     <div class="admin_create_box">
                         <div class="admin_create_inputs">
                             <label for="amount">المبلغ</label>
-                            <input type="text" name="amount" id="amount" value="{{ $debt->amount }}" placeholder="أدخل المبلغ...">
+                            <input type="text" name="amount" value="{{ $personalHonesty->amount }}" id="amount" placeholder="اسم الدين...">
                         </div>
                         <div class="admin_create_inputs">
-                            <label for="receiver">المستلم</label>
-                            <input type="text" name="receiver" id="receiver" value="{{ $debt->receiver }}" placeholder="أدخل اسم المستلم...">
+                            <label for="rate">سعر الصرف </label>
+                            <input type="text" name="rate" value="{{ $personalHonesty->rate }}" id="rate" placeholder="اسم الدين...">
                         </div>
                         <div class="admin_create_inputs">
                             <label for="currency">العملة</label>
                             <select name="currency" id="currency">
                                 @foreach (config('currencies.list') as $code => $name)
-                                <option value="{{ $code }}" {{ $debt->currency == $code ? 'selected' : '' }}>
-                                    {{ $name }}
-                                </option>
+                                    <option value="{{ $code }}" {{ $personalHonesty->currency == $code ? 'selected' : '' }}>
+                                        {{ $name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="admin_create_inputs">
                             <label for="reason">السبب</label>
-                            <input type="text" name="reason" id="reason" value="{{ $debt->reason }}" placeholder="أدخل السبب...">
+                            <input type="text" name="reason" value="{{ $personalHonesty->reason }}" id="reason" placeholder="اسم الدين...">
                         </div>
                         <div class="admin_create_inputs">
-                            <button type="submit" class="btn btn-primary">تحديث الدين</button>
+                            <button type="submit" class="btn btn-primary">تعديل الدين</button>
                         </div>
                     </div>
                 </form>
+                <div class="admin_create_inputs">
+                    <form action="{{ route('personal.delete',['PersonalHonestyId' => $personalHonesty->id]) }}">
+                        @csrf
+                        @method('delete')
+                        <button style="background: rgb(187, 61, 61)" type="submit" class="btn btn-primary">حذف الدين</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

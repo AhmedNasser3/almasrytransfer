@@ -36,14 +36,16 @@
                     </div>
                 </a>
             @foreach($categories as $key => $category)
-            <div class="home_bg">
-                <div class="home_title">
-                    <div class="home_icons">
-                        <div class="home_icon"><i class="fa-solid fa-bars"></i></div>
+            <a href="{{ route('category.edit',['categoryId' => $category->id]) }}">
+                <div class="home_bg">
+                    <div class="home_title">
+                        <div class="home_icons">
+                            <div class="home_icon"><i class="fa-solid fa-bars"></i></div>
+                        </div>
+                        <h2> {{ $category->name }} <span> {{ $key+1 }}</span></h2>
                     </div>
-                    <h2> {{ $category->name }} <span> {{ $key+1 }}</span></h2>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>
@@ -72,17 +74,19 @@
                 </div>
             </a>
             @foreach($wallets as $key => $wallet)
-            <div class="home_bg">
-                <div class="home_title">
-                    <div class="home_icons">
-                        <div class="home_icon"><i class="fa-solid fa-bars"></i></div>
-                    </div>
-                    @php
+            <a href="{{ route('wallet.WalletView',['walletId' => $wallet->id]) }}">
+                <div class="home_bg">
+                    <div class="home_title">
+                        <div class="home_icons">
+                            <div class="home_icon"><i class="fa-solid fa-bars"></i></div>
+                        </div>
+                        @php
                         $result = $wallet['section_1_name'] - $wallet['section_5_name'];
-                    @endphp
-                    <h2> {{ $result }} <span> {{ $key+1 }}</span></h2>
+                        @endphp
+                        <h2> {{ $result }} <span> {{ $key+1 }}</span></h2>
+                    </div>
                 </div>
-            </div>
+            </a>
         @endforeach
 
         </div>
@@ -90,6 +94,7 @@
 </div>
 @include('admin.pages.debit.external.index')
 @include('admin.pages.debit.internal.index')
+@include('admin.pages.honesty.personal.index')
 </div>
 </div>
 @endsection

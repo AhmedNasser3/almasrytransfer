@@ -1,48 +1,188 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
 
-        <x-validation-errors class="mb-4" />
-
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Login</h2>
+                <p>Welcome back! Please log in to your account.</p>
             </div>
-        @endsession
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
+            <div id="status-message" class="status-message">
+                @if (session('status'))
+                    <div class="mb-4 font-medium text-sm text-green-600">
+                        {{ session('status') }}
+                    </div>
                 @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
             </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" />
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                </div>
+
+                <!-- Remember me Checkbox -->
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
+                    @endif
+                    <button type="submit" class="login-button">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .login-card {
+        background-color: #ffffff;
+        width: 350px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .login-header h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #333333;
+    }
+
+    .login-header p {
+        font-size: 14px;
+        color: #777777;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    label {
+        display: block;
+        font-size: 14px;
+        color: #333333;
+        margin-bottom: 5px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .forgot-password {
+        display: block;
+        font-size: 12px;
+        color: #1a73e8;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #1a73e8;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .login-button:hover {
+        background-color: #1664c1;
+    }
+
+    .status-message {
+        color: green;
+        font-size: 14px;
+        margin-bottom: 15px;
+        display: none;
+    }
+</style>
+<script>
+    // script.js
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // جلب بيانات الإدخال
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // مثال على رسالة نجاح
+    const statusMessage = document.getElementById('status-message');
+    if (email && password) {
+        statusMessage.textContent = "Login successful!";
+        statusMessage.style.display = "block";
+        statusMessage.style.color = "green";
+    } else {
+        statusMessage.textContent = "Please fill out all fields!";
+        statusMessage.style.display = "block";
+        statusMessage.style.color = "red";
+    }
+});
+
+</script>

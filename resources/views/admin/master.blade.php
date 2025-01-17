@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/frontend/header.css') }}">
     {{--  sidebar css  --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/sidebar.css') }}">
+    {{--  home css  --}}
+    <link rel="stylesheet" href="{{ asset('css/frontend/home.css') }}">
     {{--  adminsCreate css  --}}
     <link rel="stylesheet" href="{{ asset('css/admin/createUsers/admins.css') }}">
     <title>المصري</title>
