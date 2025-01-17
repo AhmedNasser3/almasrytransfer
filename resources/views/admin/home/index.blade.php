@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('AdminContent')
+@auth
 <div class="home" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
     <div class="home_container">
         <div class="home_alarm">
@@ -97,4 +98,10 @@
 @include('admin.pages.honesty.personal.index')
 </div>
 </div>
+@endauth
+@guest
+<div style="text-align: center">
+    <h2> يجب التسجيل اولا لفتح الموقع</h2>
+</div>
+@endguest
 @endsection
