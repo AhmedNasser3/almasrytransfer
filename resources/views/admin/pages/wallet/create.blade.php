@@ -1,13 +1,13 @@
 @extends('admin.master')
 @section('AdminContent')
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="admin_create">
@@ -39,72 +39,12 @@
                         </div>
                         <div class="flex" style="display: flex;justify-content:center;">
                             <div class="admin_create_inputs">
-                                <label for="section_1_name">المبلغ للقسم 1</label>
-                                <input type="number" step="0.01" name="section_1_name" id="section_1_name" placeholder="سعر الصرف...">
+                                <label for="section_1_name">المبلغ</label>
+                                <input type="number" step="0.01" name="section_1_name" id="section_1_name" placeholder="المبلغ...">
                             </div>
                             <div class="admin_create_inputs">
-                                <label for="section_1_rate">سعر الصرف القسم 1</label>
-                                <input type="text" name="section_1_rate" id="section_1_rate" placeholder="سعر الصرف القسم...">
-                            </div>
-                            <div class="admin_create_inputs">
-                                <label for="section_1_currency">العملة للقسم 1</label>
-                            <select name="section_1_currency" id="section_1_currency">
-                                @foreach (config('currencies.list') as $code => $name)
-                                <option value="{{ $code }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="flex" style="display: flex;justify-content:center;">
-                            <div class="admin_create_inputs">
-                                <label for="section_2_name">المبلغ للقسم 2</label>
-                                <input type="number" step="0.01" name="section_2_name" id="section_2_name" placeholder="سعر الصرف...">
-                            </div>
-
-                            <div class="admin_create_inputs">
-                                <label for="section_2_rate">سعر الصرف القسم 2</label>
-                                <input type="text" name="section_2_rate" id="section_2_rate" placeholder="سعر الصرف القسم...">
-                            </div>
-                        <div class="admin_create_inputs">
-                            <label for="section_2_currency">العملة للقسم 2</label>
-                            <select name="section_2_currency" id="section_2_currency">
-                                @foreach (config('currencies.list') as $code => $name)
-                                <option value="{{ $code }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="flex" style="display: flex;justify-content:center;">
-                        <div class="admin_create_inputs">
-                            <label for="section_3_name">المبلغ للقسم 3</label>
-                            <input type="number" step="0.01" name="section_3_name" id="section_3_name" placeholder="سعر الصرف...">
-                        </div>
-                        <div class="admin_create_inputs">
-                            <label for="section_3_rate">سعر الصرف القسم 3</label>
-                            <input type="text" name="section_3_rate" id="section_3_rate" placeholder="سعر الصرف القسم...">
-                        </div>
-                        <div class="admin_create_inputs">
-                                <label for="section_3_currency">العملة للقسم 3</label>
-                                <select name="section_3_currency" id="section_3_currency">
-                                    @foreach (config('currencies.list') as $code => $name)
-                                    <option value="{{ $code }}">{{ $name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                            <div class="flex" style="display: flex;justify-content:center;">
-                            <div class="admin_create_inputs">
-                                <label for="section_4_name">المبلغ للقسم 4</label>
-                                <input type="number" step="0.01" name="section_4_name" id="section_4_name" placeholder="سعر الصرف...">
-                            </div>
-                            <div class="admin_create_inputs">
-                                <label for="section_4_rate">سعر الصرف القسم 4</label>
-                                <input type="text" name="section_4_rate" id="section_4_rate" placeholder="سعر الصرف القسم...">
-                            </div>
-
-                            <div class="admin_create_inputs">
-                                <label for="section_4_currency">العملة للقسم 4</label>
-                                <select name="section_4_currency" id="section_4_currency">
+                                <label for="section_1_currency">العملة</label>
+                                <select name="section_1_currency" id="section_1_currency">
                                     @foreach (config('currencies.list') as $code => $name)
                                     <option value="{{ $code }}">{{ $name }}</option>
                                     @endforeach
@@ -113,30 +53,95 @@
                         </div>
                         <div class="flex" style="display: flex;justify-content:center;">
                             <div class="admin_create_inputs">
-                                <label for="section_5_name">المبلغ للقسم 5</label>
-                                <input type="number" step="0.01" name="section_5_name" id="section_5_name" placeholder="سعر الصرف...">
-                            </div>
-                            <div class="admin_create_inputs">
-                                <label for="section_5_rate">سعر الصرف القسم 5</label>
-                                <input type="text" name="section_5_rate" id="section_5_rate" placeholder="سعر الصرف القسم...">
-                            </div>
-                            <div class="admin_create_inputs">
-                            <label for="section_5_currency">العملة للقسم 5</label>
-                            <select name="section_5_currency" id="section_5_currency">
+                            <label for="section_1_rate">سعر الصرف</label>
+                            <input type="text" name="section_1_rate" id="section_1_rate" placeholder="سعر الصرف القسم...">
+                        </div>
+                        <div class="admin_create_inputs">
+                            <label for="section_2_name">المبلغ</label>
+                            <input type="number" step="0.01" name="section_2_name" id="section_2_name" placeholder="المبلغ...">
+                        </div>
+                        <div class="admin_create_inputs">
+                            <label for="section_2_currency">العملة</label>
+                            <select name="section_2_currency" id="section_2_currency">
                                 @foreach (config('currencies.list') as $code => $name)
                                 <option value="{{ $code }}">{{ $name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+
+                    <div class="flex" style="display: flex;justify-content:center;">
+                            <div class="admin_create_inputs">
+                                <label for="section_2_rate">سعر الصرف</label>
+                                <input type="text" name="section_2_rate" id="section_2_rate" placeholder="سعر الصرف القسم...">
+                            </div>
+                            <div class="admin_create_inputs">
+                                <label for="section_3_name">المبلغ</label>
+                                <input type="number" step="0.01" name="section_3_name" id="section_3_name" placeholder="المبلغ...">
+                            </div>
+                            <div class="admin_create_inputs">
+                                <label for="section_3_currency">العملة</label>
+                                <select name="section_3_currency" id="section_3_currency">
+                                    @foreach (config('currencies.list') as $code => $name)
+                                    <option value="{{ $code }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                            <div class="flex" style="display: flex;justify-content:center;">
+
+                            <div class="admin_create_inputs">
+                                <label for="section_3_rate">سعر الصرف</label>
+                                <input type="text" name="section_3_rate" id="section_3_rate" placeholder="سعر الصرف القسم...">
+                            </div>
+                            <div class="admin_create_inputs">
+                                <label for="section_4_name">المبلغ</label>
+                                <input type="number" step="0.01" name="section_4_name" id="section_4_name" placeholder="المبلغ...">
+                            </div>
+                            <div class="admin_create_inputs">
+                                <label for="section_4_currency">العملة</label>
+                                <select name="section_4_currency" id="section_4_currency">
+                                    @foreach (config('currencies.list') as $code => $name)
+                                    <option value="{{ $code }}">{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            </div>
+                            <div class="flex" style="display: flex;justify-content:center;">
+
+                            <div class="admin_create_inputs">
+                                <label for="section_4_rate">سعر الصرف</label>
+                                <input type="text" name="section_4_rate" id="section_4_rate" placeholder="سعر الصرف القسم...">
+                            </div>
+                            <div class="admin_create_inputs">
+                                <label for="section_5_name">المبلغ</label>
+                                <input type="number" step="0.01" name="section_5_name" id="section_5_name" placeholder="المبلغ...">
+                            </div>
+                            <div class="admin_create_inputs">
+                                <label for="section_5_currency">العملة</label>
+                            <select name="section_5_currency" id="section_5_currency">
+                                @foreach (config('currencies.list') as $code => $name)
+                                <option value="{{ $code }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        </div>
+                        <div class="flex" style="display: flex;justify-content:center;">
+
+                            <div class="admin_create_inputs">
+                                <label hidden for="section_5_rate">سعر الصرف</label>
+                                <input value="1" hidden type="text" name="section_5_rate" id="section_5_rate" placeholder="سعر الصرف القسم...">
+                            </div>
+
+                    </div>
                     <div class="admin_create_inputs">
                         <button type="submit" class="btn btn-primary">إنشاء قسم</button>
-                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

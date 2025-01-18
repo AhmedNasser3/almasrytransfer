@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Wallet;
+namespace App\Http\Controllers\admin\wallet;
 
 use Illuminate\Http\Request;
 use App\Models\admin\wallet\Wallet;
@@ -9,6 +9,10 @@ use App\Models\admin\category\Category;
 
 class WalletController extends Controller
 {
+    public function all(){
+        $wallets = Wallet::all();
+        return view('admin.pages.wallet.all',compact('wallets'));
+    }
     public function create()
     {
         $categories = Category::all();

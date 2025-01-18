@@ -15,8 +15,16 @@
                                 <ul class="sidebar_link_bg">
                                     <a href="{{ route('internal.create') }}"><li>ديون داخلية</li></a>
                                     <a href="{{ route('external.create') }}"><li>ديون خارجية</li></a>
+                                    <a href="{{ route('wallet.all') }}"><li>جميع المعاملات</li></a>
                                     <a href=""><li>امانات (شخصية)</li></a>
-                                    <a href=""><li>امانات ( امانة)</li></a>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar_link">اضف مستخدمين <span class="arrow"><i class="fa-solid fa-arrow-down"></i></span></a>
+                                <ul class="sidebar_link_bg">
+                                    <a href="{{ route('user.view') }}"><li>مشاهدة جميع المستخدمين</li></a>
+                                    <a href="{{ route('user.create') }}"><li>انشيئ مستخدم</li></a>
+
                                 </ul>
                             </li>
                             @if (auth()->check())
@@ -27,9 +35,9 @@
                             <li>
                                 <a href="{{ route('login') }}" class="sidebar_link"> دخول<span class="arrow"><i class="fa-regular fa-user"></i></span></a>
                             </li>
-                            <li>
+                            {{--  <li>
                                 <a href="{{ route('register') }}" class="sidebar_link">تسجيل<span class="arrow"><i class="fa-regular fa-user"></i></span></a>
-                            </li>
+                            </li>  --}}
                             @endif
                         </ul>
                     </div>

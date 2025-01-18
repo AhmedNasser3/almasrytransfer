@@ -3,22 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\admin\debt\ExternalDebt;
 use App\Http\Controllers\admin\home\HomeController;
-use App\Http\Controllers\Admin\Wallet\WalletController;
+use App\Http\Controllers\admin\wallet\WalletController;
 use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\debt\ExternalDebtController;
 use App\Http\Controllers\admin\debt\InternalDebtController;
 use App\Http\Controllers\admin\honesty\PersonalHonestyController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home.page');
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
 
 
 // categoryController
@@ -31,6 +31,7 @@ Route::controller(CategoryController::class)->prefix('category')->group(function
 });
 // walletController
 Route::controller(WalletController::class)->prefix('wallet')->group(function(){
+    Route::get('/all', 'all')->name('wallet.all');
     Route::get('/create', 'create')->name('wallet.create');
     Route::post('/store', 'store')->name('wallet.store');
     Route::get('/edit/{walletId}', 'edit')->name('wallet.edit');
@@ -66,4 +67,10 @@ Route::controller(PersonalHonestyController::class)
 // views
 Route::controller(HomeController::class)->prefix('wallet')->group(function(){
     Route::get('/WalletView/{walletId}', 'WalletView')->name('wallet.WalletView');
+});
+Route::controller(HomeController::class)->prefix('users')->group(function(){
+    Route::get('/create',  'createUser')->name('user.create');
+    Route::get('/view',  'viewUser')->name('user.view');
+    Route::post('/storeUser',  'storeUser')->name('user.storeUser');
+    Route::get('/deleteUser/{userId}',  'deleteUser')->name('user.deleteUser');
 });
